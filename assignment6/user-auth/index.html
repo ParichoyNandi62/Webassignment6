@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Signup Modals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grey+Qo&display=swap" rel="stylesheet">
+</head>
+<body class="bg-cover bg-center h-screen flex flex-col justify-between">
+    <header class="bg-gray-800 text-white p-4 shadow-md" style="opacity: 0.75;">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">
+                <img src="./logo.png" style="height: 60px; opacity: 1;">
+            </h1>
+        </div>
+    </header>
+    <main class="flex-grow flex items-center justify-center">
+        <div class="flex justify-center items-center h-full">
+            <div class="bg-gray-800 bg-opacity-80 p-12 rounded-lg text-center space-y-6">
+                <h1 class="text-4xl grey-qo-regular text-white" style="font-size: 80px;padding-bottom: 50px;">Welcome</h1>
+                <div class="flex justify-center space-x-4">
+                    <button id="openLogin" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Login</button>
+                    <button id="openSignup" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Signup</button>
+                </div>
+            </div>
+        </div>
+        
+    </main>
+    <footer class="bg-gray-800 text-white p-4 text-center shadow-md" style="opacity: 0.75;padding: 0px;">
+        <p>&copy; 2024 My Website. All rights reserved.</p>
+    </footer>
+    <div id="loginModal" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-96 relative">
+            <button id="closeLogin" class="absolute top-4 right-4 text-red-500 hover:bg-red-100 p-2 rounded-full transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Login</h2>
+            <form id="loginForm">
+                <div class="mb-4 relative">
+                    <label for="loginEmail" class="block text-gray-700">Email:</label>
+                    <input type="email" id="loginEmail" class="border border-gray-300 p-2 w-full rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <i class="fas fa-times error-icon" id="loginEmailErrorIcon"></i>
+                    <p id="loginError" class="text-red-500 text-sm absolute right-0 top-full mt-1"></p>
+                </div>
+                <div class="mb-4 relative">
+                    <label for="loginPassword" class="block text-gray-700">Password:</label>
+                    <input type="password" id="loginPassword" class="border border-gray-300 p-2 w-full rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <i id="toggleLoginPassword" class="fas fa-eye absolute right-2 top-2.5 cursor-pointer" style="margin-top: 25px;"></i>
+                    <i class="fas fa-times error-icon" id="loginPasswordErrorIcon" style="margin-right:30px;"></i>
+                </div>
+                <div class="flex justify-end space-x-4 mt-4">
+                    <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition">Login</button>
+                    <button id="cancelLogin" class="bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="signupModal" class="modal fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center hidden">
+        <div class="bg-white p-8 rounded-lg shadow-lg w-96 relative">
+            <button id="closeSignup" class="absolute top-4 right-4 text-red-500 hover:bg-red-100 p-2 rounded-full transition">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="text-2xl font-bold mb-4 text-blue-600">Signup</h2>
+            <form id="signupForm">
+                <div class="mb-4 relative">
+                    <label for="name" class="block text-gray-700">Name:</label>
+                    <input type="text" id="name" class="border border-gray-300 p-2 w-full rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <i class="fas fa-times error-icon" id="nameErrorIcon"></i>
+                    <p id="nameError" class="text-red-500 text-sm absolute right-0 top-full mt-1"></p>
+                </div>
+                <div class="mb-4 relative">
+                    <label for="email" class="block text-gray-700">Email:</label>
+                    <input type="email" id="email" class="border border-gray-300 p-2 w-full rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <i class="fas fa-times error-icon" id="emailErrorIcon"></i>
+                    <p id="emailError" class="text-red-500 text-sm absolute right-0 top-full mt-1"></p>
+                </div>
+                <div class="mb-4 relative">
+                    <label for="password" class="block text-gray-700">Password:</label>
+                    <input type="password" id="password" class="border border-gray-300 p-2 w-full rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <i id="toggleSignupPassword" class="fas fa-eye absolute right-2 top-2.5 cursor-pointer" style="margin-top: 25px;"></i>
+                    <i class="fas fa-times error-icon" id="passwordErrorIcon" style="margin-right: 30px;"></i>
+                    <p id="passwordError" class="text-red-500 text-sm absolute right-0 top-full mt-1"></p>
+                </div>
+                <div class="mb-4 relative">
+                    <label for="confirmPassword" class="block text-gray-700">Confirm Password:</label>
+                    <input type="password" id="confirmPassword" class="border border-gray-300 p-2 w-full rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <i class="fas fa-times error-icon" id="confirmPasswordErrorIcon"></i>
+                    <p id="confirmPasswordError" class="text-red-500 text-sm absolute right-0 top-full mt-1"></p>
+                </div>
+                <div class="mb-4 relative">
+                    <label for="dob" class="block text-gray-700">Date of Birth:</label>
+                    <input type="date" id="dob" class="border border-gray-300 p-2 w-full rounded shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500" required>
+                    <i class="fas fa-times error-icon" id="dobErrorIcon" style="margin-right: 20px;"></i>
+                    <p id="dobError" class="text-red-500 text-sm absolute right-0 top-full mt-1"></p>
+                </div>
+                <div class="flex justify-end space-x-4 mt-4" style="padding-top: 10%;">
+                    <button type="submit" id="signupSubmit" class="bg-blue-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-blue-700 transition" disabled>Signup</button>
+                    <button id="cancelSignup" class="bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-red-700 transition">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<div id="notification" class="fixed top-4 right-4 bg-blue-500 text-white p-4 rounded-lg shadow-lg hidden">
+    <p id="notificationMessage"></p>
+</div>
+
+
+
+    <script src="scripts.js"></script>
+</body>
+</html>

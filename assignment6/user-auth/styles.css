@@ -1,0 +1,107 @@
+.grey-qo-regular {
+    font-family: "Grey Qo", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+.modal {
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.hidden {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal:not(.hidden) {
+    visibility: visible;
+    opacity: 1;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+button.rounded-full {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+}
+
+.error-icon {
+    position: absolute;
+    right: 1rem;
+    
+    top: 2rem;
+    color: #f56565;
+    display: none;
+}
+
+.fas {
+    font-size: 1.5rem;
+}
+
+body {
+    background-image: url('bg.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.error-icon {
+    color: red;
+    display: none;
+}
+
+button {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+    .modal {
+        padding: 10px;
+    }
+    .modal-content {
+        width: 100%;
+    }
+}
+
+#notification {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 1; 
+    transform: translateY(-20px);
+    z-index: 1000;
+}
+
+#notification.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#notification.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+#notification.success {
+    background-color: #48bb78; 
+}
+
+#notification.error {
+    background-color: #f56565; 
+}
